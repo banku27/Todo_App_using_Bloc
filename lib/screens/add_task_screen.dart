@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/Bloc/bloc/tasks_bloc.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/services/guid_gen.dart';
 
 class AddTaskScreen extends StatelessWidget {
   const AddTaskScreen({
@@ -45,6 +46,7 @@ class AddTaskScreen extends StatelessWidget {
                 onPressed: () {
                   var task = Task(
                     title: titleController.text,
+                    id: GUIDGen.generate(),
                   );
                   context.read<TasksBloc>().add(AddTask(task: task));
                   Navigator.pop(context);
