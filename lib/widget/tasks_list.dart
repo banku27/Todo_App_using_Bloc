@@ -16,20 +16,26 @@ class TasksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-          itemCount: taskList.length,
-          itemBuilder: (context, index) {
-            var task = taskList[index];
-            return ListTile(
-                title: Text(task.title),
-                trailing: Checkbox(
-                  value: task.isDone,
-                  onChanged: (value) {
-                    context.read<TasksBloc>().add(UpdateTask(task: task));
-                  },
-                ),
-                onLongPress: () =>
-                    context.read<TasksBloc>().add(DeleteTask(task: task)));
-          }),
+        itemCount: taskList.length,
+        itemBuilder: (context, index) {
+          var task = taskList[index];
+          return ListTile(
+              title: Text(
+                task.title,
+                style: TextStyle(
+                    decoration:
+                        task.isDone! ? TextDecoration.lineThrough : null),
+              ),
+              trailing: Checkbox(
+                value: task.isDone,
+                onChanged: (value) {
+                  context.read<TasksBloc>().add(UpdateTask(task: task));
+                },
+              ),
+              onLongPress: () =>
+                  context.read<TasksBloc>().add(DeleteTask(task: task)));
+        },
+      ),
     );
   }
 }
