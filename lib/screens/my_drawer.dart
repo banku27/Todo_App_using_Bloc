@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/screens/recycle_bin.dart';
+
+import 'package:todo_app/Bloc/bloc/tasks_bloc.dart';
+import 'package:todo_app/screens/tasks_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -16,16 +21,30 @@ class MyDrawer extends StatelessWidget {
               child: Text('Task Drawer',
                   style: Theme.of(context).textTheme.headline5),
             ),
-            const ListTile(
-              leading: Icon(Icons.folder_special),
-              title: Text('My Tasks'),
-              trailing: Text('0'),
+            BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(TasksScreen.id);
+                  },
+                  child: ListTile(
+                    leading: const Icon(Icons.folder_special),
+                    title: const Text('My Tasks'),
+                    trailing: Text('${state.allTasks.length}'),
+                  ),
+                );
+              },
             ),
             const Divider(),
-            const ListTile(
-              leading: Icon(Icons.delete),
-              title: Text('Bin'),
-              trailing: Text('0'),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(RecycleBin.id);
+              },
+              child: const ListTile(
+                leading: Icon(Icons.delete),
+                title: Text('Bin'),
+                trailing: Text('0'),
+              ),
             ),
           ],
         ),
