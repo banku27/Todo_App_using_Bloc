@@ -5,9 +5,17 @@ import 'package:todo_app/screens/recycle_bin.dart';
 import 'package:todo_app/Bloc/bloc/tasks_bloc.dart';
 import 'package:todo_app/screens/tasks_screen.dart';
 
-class MyDrawer extends StatelessWidget {
+import '../Bloc/bloc/switch_bloc.dart';
+
+class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  bool switchValue = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,7 +33,7 @@ class MyDrawer extends StatelessWidget {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed(TasksScreen.id);
+                    Navigator.of(context).pushReplacementNamed(TasksScreen.id);
                   },
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),
@@ -40,7 +48,7 @@ class MyDrawer extends StatelessWidget {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed(RecycleBin.id);
+                    Navigator.of(context).pushReplacementNamed(RecycleBin.id);
                   },
                   child: ListTile(
                     leading: const Icon(Icons.delete),
@@ -50,6 +58,20 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
+            BlocBuilder<SwitchBloc, SwitchState>(
+              builder: (context, state) {
+                return Switch(
+                    value: state.switchValue,
+                    onChanged: (newValue) {
+                      newValue
+                          ? context.read<SwitchBloc>().add(SwitchOnEvent())
+                          : context.read<SwitchBloc>().add(SwitchOffEvent());
+                      // setState(() {
+                      //   switchValue = newValue;
+                      // });
+                    });
+              },
+            )
           ],
         ),
       ),
