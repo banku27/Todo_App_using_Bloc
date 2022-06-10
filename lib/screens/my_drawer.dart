@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/screens/recycle_bin.dart';
 
 import 'package:todo_app/Bloc/bloc/tasks_bloc.dart';
+import 'package:todo_app/screens/tabs_screen.dart';
 import 'package:todo_app/screens/tasks_screen.dart';
 
 import '../Bloc/bloc/switch_bloc.dart';
@@ -33,7 +34,7 @@ class _MyDrawerState extends State<MyDrawer> {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushReplacementNamed(TasksScreen.id);
+                    Navigator.of(context).pushReplacementNamed(TabsScreen.id);
                   },
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),

@@ -38,12 +38,6 @@ class _TasksScreenState extends State<TasksScreen> {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Tasks App'),
-            actions: [
-              IconButton(
-                onPressed: () => _addTask(context),
-                icon: const Icon(Icons.add),
-              )
-            ],
           ),
           drawer: const MyDrawer(),
           body: Column(
