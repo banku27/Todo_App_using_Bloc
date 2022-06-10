@@ -8,7 +8,7 @@ import 'package:todo_app/services/app_router.dart';
 import 'package:todo_app/services/app_theme.dart';
 
 import 'Bloc/bloc/tasks_bloc.dart';
-import 'screens/tasks_screen.dart';
+import 'screens/pending_tasks_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             theme: state.switchValue
                 ? AppThemes.appThemeData[AppTheme.darkTheme]
                 : AppThemes.appThemeData[AppTheme.lightTheme],
-            home: const TabsScreen(),
+            home: TabsScreen(),
             onGenerateRoute: appRouter.onGenerateRoute,
           );
         },

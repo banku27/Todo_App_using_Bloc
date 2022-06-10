@@ -4,7 +4,7 @@ import 'package:todo_app/screens/recycle_bin.dart';
 
 import 'package:todo_app/Bloc/bloc/tasks_bloc.dart';
 import 'package:todo_app/screens/tabs_screen.dart';
-import 'package:todo_app/screens/tasks_screen.dart';
+import 'package:todo_app/screens/pending_tasks_screen.dart';
 
 import '../Bloc/bloc/switch_bloc.dart';
 
